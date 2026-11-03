@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Checks the marketplace before a push: JSON parses, every skill and agent has
-# the frontmatter Claude needs, links inside skills resolve, core.md fits
+# Checks the marketplace before a push: JSON parses, every skill, agent,
+# command and output style has the frontmatter Claude needs, hooks files have
+# the right shape, links inside skills resolve, core.md fits
 # Desktop's 3,000-character limit, and (when claude is installed) Claude
 # Code's own validator passes.
 set -uo pipefail
@@ -31,10 +32,16 @@ frontmatter() { # file field
 	awk -v k="$2" 'NR == 1 && $0 != "---" { exit } NR > 1 && $0 == "---" { exit } NR > 1 && index($0, k ": ") == 1 { print substr($0, length(k) + 3); exit }' "$1"
 }
 
-for f in "$root"/plugins/*/skills/*/SKILL.md "$root"/plugins/*/agents/*.md; do
+for f in "$root"/plugins/*/hooks/hooks.json; do
+	[ -f "$f" ] || continue
+	jq -e '.hooks | type == "object"' "$f" >/dev/null 2>&1 || fail "${f#"$root"/}: needs a top-level \"hooks\" object"
+done
+
+for f in "$root"/plugins/*/skills/*/SKILL.md "$root"/plugins/*/agents/*.md "$root"/plugins/*/output-styles/*.md "$root"/plugins/*/commands/*.md; do
 	[ -f "$f" ] || continue
 	rel=${f#"$root"/}
-	[ -n "$(frontmatter "$f" name)" ] || fail "$rel: no name in its frontmatter"
+	# Commands take their name from the file; everything else names itself.
+	case $f in */commands/*) ;; *) [ -n "$(frontmatter "$f" name)" ] || fail "$rel: no name in its frontmatter" ;; esac
 	desc=$(frontmatter "$f" description)
 	[ -n "$desc" ] || fail "$rel: no description in its frontmatter"
 	[ "${#desc}" -le 1024 ] || fail "$rel: description is ${#desc} characters (over 1024)"

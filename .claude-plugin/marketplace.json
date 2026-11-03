@@ -10,6 +10,11 @@
       "name": "bud",
       "source": "./plugins/bud",
       "description": "Code style, planning, tool use and project setup, the same on every device"
+    },
+    {
+      "name": "bud-ide",
+      "source": "./plugins/bud-ide",
+      "description": "For Claude Code inside the bud Neovim IDE (bud installs it; skip it on claude.ai)"
     }
   ]
 }

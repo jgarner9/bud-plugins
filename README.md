@@ -11,7 +11,15 @@ Cowork and Claude Code all pick it up.
 | `bud:tools` | Which tool to use: code navigation, the lookup ladder, Basic Memory, Linear |
 | `bud:bootstrap-project` | `/bud:bootstrap-project`: write a repo's `CLAUDE.md` with you |
 
-Plus a `code-reviewer` agent (Claude Code and Cowork; chat ignores agents).
+Plus a `code-reviewer` agent (Claude Code and Cowork; chat ignores agents) and
+`/bud:plan-to-linear`.
+
+A second plugin, `bud-ide`, is only for Claude Code inside the
+[bud](https://github.com/jgarner9/bud) Neovim IDE, which installs it: the
+`bud-ide:bud-dev` and `bud-ide:file-issue` skills, `/bud-ide:file-issue`, the
+`bud-ide:bud` output style, and a `SessionStart` hook that gives sessions bud
+starts (`BUD_BIN` set) the notes on working inside bud. Don't add it on
+claude.ai.
 
 Skills load when a task matches them. [`core.md`](core.md) is the short,
 always-on part that names them, so they load reliably.
