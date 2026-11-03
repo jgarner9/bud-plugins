@@ -1,0 +1,15 @@
+{
+  "name": "bud-plugins",
+  "description": "Jason's Claude setup, shared by claude.ai, Claude Desktop, Cowork and Claude Code",
+  "owner": {
+    "name": "jgarner9",
+    "url": "https://github.com/jgarner9"
+  },
+  "plugins": [
+    {
+      "name": "bud",
+      "source": "./plugins/bud",
+      "description": "Code style, planning, tool use and project setup, the same on every device"
+    }
+  ]
+}

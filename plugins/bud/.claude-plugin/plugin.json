@@ -1,0 +1,10 @@
+{
+  "name": "bud",
+  "description": "Code style, planning, tool use and project setup, the same on every device",
+  "author": {
+    "name": "jgarner9",
+    "url": "https://github.com/jgarner9"
+  },
+  "repository": "https://github.com/jgarner9/bud-plugins",
+  "keywords": ["style", "planning", "tools", "linear", "basic-memory"]
+}
