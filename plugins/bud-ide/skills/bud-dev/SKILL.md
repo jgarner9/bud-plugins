@@ -5,7 +5,7 @@ description: How the bud repo (a Neovim IDE driven by a small Go CLI) is built a
 
 # Working on bud
 
-bud is a Go CLI (`cmd/bud`, `internal/`) that installs, launches, updates and syncs an isolated Neovim config (`NVIM_APPNAME=bud`, the repo's `nvim/`). The binary is the release: `nvim/`, `languages/`, `layouts/`, `tools/`, `migrations/` and `bundles/` are embedded (`embed.go`) and synced into `~/.config/bud`; `kit/kit.json` (also embedded) only lists the plugin marketplace, plugins and output style `bud kit sync` installs into Claude Code (D77).
+bud is a Go CLI (`cmd/bud`, `internal/`) that installs, launches, updates and syncs an isolated Neovim config (`NVIM_APPNAME=bud`, the repo's `nvim/`). The binary is the release: `nvim/`, `languages/`, `layouts/`, `tools/`, `migrations/` and `bundles/` are embedded (`embed.go`) and synced into `~/.config/bud`; `kit/kit.json` (also embedded) only lists the plugin marketplace and plugins `bud kit sync` installs into Claude Code, where `core.md` comes from, and the MCP servers `bud doctor` expects (D77, D78).
 
 Read `CLAUDE.md` at the repo root first: it maps the architecture. `BASE.md` is the plan plus a numbered decision log (D1, D2, ...); when a decision changes, update it there too.
 
@@ -29,5 +29,3 @@ Read `CLAUDE.md` at the repo root first: it maps the architecture. `BASE.md` is 
 ## Checking
 
 `just check` is what CI runs: gofmt, stylua + selene, go vet, shellcheck, `go test ./...`, the headless Lua tests in `tests/lua/` and the smoke test. Tests swap package-level vars and restore them with `t.Cleanup`. Commits are lowercase conventional (`feat:`, `fix:`, `chore:`, `docs:`) with the Linear issue id.
-
-Report finished work as a task log (the `bud` output style's format): one line per file changed, check run and issue moved.
