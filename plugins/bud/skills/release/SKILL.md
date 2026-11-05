@@ -39,12 +39,21 @@ Run both, on the whole range, not just the last commit:
    target: `high <last tag>..origin/main`.
 2. The `security-review` skill (`/security-review`) on the same range.
 
-Both look at a diff. If one reports nothing to review because it read the
-working tree, give it the release as a pending change instead: add a
-throwaway worktree (`git worktree add --detach <scratch dir> origin/main`),
-`git reset --soft <last tag>` inside it so the whole release is staged, run
-the review from there, and remove the worktree after
-(`git worktree remove --force <scratch dir>`). Never reset Jason's own checkout.
+`code-review` takes the range as its target. `security-review` takes no
+target: it reviews `origin/HEAD...HEAD`, which on `main` is empty, and a
+cloud clone may have no `origin/HEAD` at all. Point it at the release, run it,
+then put it back:
+
+```sh
+git update-ref refs/remotes/origin/release-base '<last tag>^{commit}'
+git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/release-base
+# run security-review
+git remote set-head origin main
+git update-ref -d refs/remotes/origin/release-base
+```
+
+Fixes made in step 4 get their own `code-review` (their commits as the
+range); a review of a fix's fix can stop at `low` once its findings are small.
 
 If either skill isn't available (a surface other than Claude Code), say so
 and stop: a release without both reviews isn't one this skill cuts.
