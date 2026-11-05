@@ -10,7 +10,7 @@ Cowork and Claude Code all pick it up.
 | `bud:planning` | Specs, design docs with a decision log, tasks, Linear issues |
 | `bud:tools` | Which tool to use: code navigation, the lookup ladder, Basic Memory, Linear |
 | `bud:bootstrap-project` | `/bud:bootstrap-project`: write a repo's `CLAUDE.md` with you |
-| `bud:release` | Cutting a release (`/bud:release`): code review and security review of everything since the last tag, then the repo's own release steps. Claude Code only, since it runs Claude Code's `code-review` and `security-review` |
+| `bud:release` | Cutting a release (`/bud:release`): code review and security review of everything since the last tag, the docs checked against the code and fixed, then the repo's own release steps. Claude Code only, since it runs Claude Code's `code-review` and `security-review` |
 
 Plus a `code-reviewer` agent (Claude Code and Cowork; chat ignores agents) and
 `/bud:plan-to-linear`.

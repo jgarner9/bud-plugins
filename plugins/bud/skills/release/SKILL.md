@@ -1,13 +1,13 @@
 ---
 name: release
-description: Cut a release of the current repository, with a code review and a security review of everything since the last release before anything ships. Use whenever cutting, shipping or publishing a release, bumping VERSION, tagging vX.Y.Z, or when Jason runs /bud:release. Claude Code only, since it runs Claude Code's code-review and security-review skills.
+description: Cut a release of the current repository, with a code review and a security review of everything since the last release, and the docs checked against the code, before anything ships. Use whenever cutting, shipping or publishing a release, bumping VERSION, tagging vX.Y.Z, or when Jason runs /bud:release. Claude Code only, since it runs Claude Code's code-review and security-review skills.
 argument-hint: "[X.Y.Z]"
 ---
 
 # Cut a release
 
 Every release gets a code review and a security review of everything it ships,
-before it ships. Jason picks the version and decides what a finding means; you
+and docs that say what the code does, before it ships. Jason picks the version and decides what a finding means; you
 do the legwork and never cut the release past a finding he hasn't seen.
 
 ## 1. Find out how this repo releases
@@ -71,13 +71,37 @@ ship with it (he says why), or stop the release.
   fixed or Jason explicitly ships with it.
 - No findings: say so in one line and go on.
 
-## 5. Pick the version
+## 5. Check the docs against the code
+
+Docs drift when code moves under them, so check every page, not only the ones
+the release touched:
+
+- **What to read:** the README, `docs/`, plan or design docs that describe the
+  current state (bud's `BASE.md`, sections 0 to 7), and `CLAUDE.md` or
+  `AGENTS.md`. Leave dated records alone: a decision log entry, a dated spec or
+  plan, a changelog entry for an old release. They say what was true then.
+- **How to check:** against the code and the built binary, never from memory.
+  Commands and flags against each command's `-h` output, keys against the
+  keymap code, config keys and defaults against the defaults in code, file
+  trees against `ls`, counts ("seven languages", "three layouts") against what
+  ships, and statuses or event names against the code that emits them. A doc
+  that names a file, function or skill that no longer exists is wrong too.
+- **What to fix:** anything that's wrong, missing for what this release adds,
+  or describes something removed. Keep each page's voice and level of detail;
+  don't rewrite what's accurate. Changes in behaviour the docs need but the
+  code doesn't have are findings for Jason, not doc edits.
+- **Then:** show Jason a short list of what was wrong, page by page, make the
+  fixes as one `docs:` commit, run the repo's checks (some test the docs, like
+  bud's `TestDocsCoverEveryKey`) and push to `main`. Nothing wrong: say so in
+  one line and go on.
+
+## 6. Pick the version
 
 Propose the next version from the commits (semver: a breaking change bumps
 major, a `feat` minor, only fixes patch), or take the one Jason passed, and
 let him confirm it. It must be newer than the last tag.
 
-## 6. Cut it
+## 7. Cut it
 
 Do it the repo's way. For a `VERSION` file (bud): write the version, commit
 `chore: release vX.Y.Z` with a body that records the reviews, and push `main`:
@@ -86,12 +110,12 @@ Do it the repo's way. For a `VERSION` file (bud): write the version, commit
 chore: release v0.20.0
 
 Reviewed v0.19.0..<sha>: code-review (2 findings, both fixed in <sha>),
-security-review (none).
+security-review (none), docs (3 pages fixed in <sha>).
 ```
 
 A finding Jason chose to ship with goes in that body too, with his reason.
 
-## 7. Watch it land
+## 8. Watch it land
 
 Follow the release workflow run (GitHub's Actions tools: list the runs for
 the push, then get the run) until it's done. Green: give Jason the release
