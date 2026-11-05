@@ -66,3 +66,7 @@ track commits, so every push is an update.
 
 Keep `core.md` under 3,000 characters (Desktop's limit for organization
 instructions) and keep it short anyway, since it's in every conversation.
+
+## License
+
+[MIT](LICENSE).

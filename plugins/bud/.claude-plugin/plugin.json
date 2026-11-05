@@ -6,5 +6,6 @@
     "url": "https://github.com/jgarner9"
   },
   "repository": "https://github.com/jgarner9/bud-plugins",
+  "license": "MIT",
   "keywords": ["style", "planning", "tools", "linear", "basic-memory"]
 }
