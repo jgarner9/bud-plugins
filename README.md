@@ -17,8 +17,10 @@ Plus a `code-reviewer` agent (Claude Code and Cowork; chat ignores agents) and
 A second plugin, `bud-ide`, is only for Claude Code inside the
 [bud](https://github.com/jgarner9/bud) Neovim IDE, which installs it: the
 `bud-ide:bud-dev` and `bud-ide:file-issue` skills (`/bud-ide:file-issue` runs
-it by hand), and a `SessionStart` hook that gives sessions bud
-starts (`BUD_BIN` set) the notes on working inside bud. Don't add it on
+it by hand), the `bud-ide:chat` agent that bud's chat (the dashboard's `c`,
+`bud chat`) starts Claude Code's TUI as (conversational, can read and look
+things up but not edit or run commands), and a `SessionStart` hook that gives
+sessions bud starts (`BUD_BIN` set) the notes on working inside bud. Don't add it on
 claude.ai.
 
 Skills load when a task matches them. [`core.md`](core.md) is the short,
