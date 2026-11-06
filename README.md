@@ -24,6 +24,14 @@ things up but not edit or run commands), and a `SessionStart` hook that gives
 sessions bud starts (`BUD_BIN` set) the notes on working inside bud. Don't add it on
 claude.ai.
 
+The marketplace also lists `superpowers`, Jesse Vincent's
+[Superpowers](https://github.com/obra/superpowers) (`brainstorming`,
+`writing-plans` and the rest), fetched from its own repo and pinned to a
+release (`ref` plus the commit as `sha`), so every machine runs the same
+version. To move to a newer one, change both in `marketplace.json`; the
+commit is the tag's peeled one (`git ls-remote <repo> 'refs/tags/vX.Y.Z^{}'`).
+Add it on claude.ai the same way as `bud`.
+
 Skills load when a task matches them. [`core.md`](core.md) is the short,
 always-on part that names them, so they load reliably.
 
