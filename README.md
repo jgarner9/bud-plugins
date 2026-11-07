@@ -9,6 +9,7 @@ Cowork and Claude Code all pick it up.
 | `bud:code-style` | Writing, testing, reviewing and committing code |
 | `bud:planning` | Specs, design docs with a decision log, tasks, Linear issues |
 | `bud:tools` | Which tool to use: code navigation, the lookup ladder, Basic Memory, Linear |
+| `bud:learn` | Learning how or why something works: the explanation first, tutoring only on request, study aids, and a note saved to Basic Memory's `learning/` every time. Replaces Anthropic's `learn` skill, so turn that one off on claude.ai |
 | `bud:bootstrap-project` | `/bud:bootstrap-project`: write a repo's `CLAUDE.md` with you |
 | `bud:release` | Cutting a release (`/bud:release`): code review and security review of everything since the last tag, the docs checked against the code and fixed, then the repo's own release steps. Claude Code only, since it runs Claude Code's `code-review` and `security-review` |
 
