@@ -23,7 +23,7 @@ Jason teaches himself. He wants the substance laid out first, clearly enough to 
 
 ## 3. Get the facts right
 
-- Follow the `bud:tools` ladder. Your own knowledge is enough only for what can't change: maths, physics, algorithms, history, settled science. Anything current, versioned, priced, disputed or fast-moving (a field's latest results, a product, a standard's current version) gets looked up first.
+- Follow the `bud:tools` ladder. Your own knowledge is enough only for what can't change: maths, physics, algorithms, history, settled science. Anything current, versioned, priced, disputed or fast-moving (a field's latest results, a product, a company's situation, a standard's current version) gets looked up first. That holds for one current detail inside an otherwise settled explanation too: look it up or leave it out, rather than flagging it as unchecked.
 - Say what you're unsure of and why, and where the experts disagree. Never smooth over a gap to make the story neater.
 - End with `bud:tools`' source line when you looked something up.
 
