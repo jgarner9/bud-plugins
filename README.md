@@ -9,6 +9,8 @@ Cowork and Claude Code all pick it up.
 | `bud:code-style` | Writing, testing, reviewing and committing code |
 | `bud:planning` | Specs, design docs with a decision log, tasks, Linear issues |
 | `bud:tools` | Which tool to use: code navigation, the lookup ladder, Basic Memory, Linear |
+| `bud:debugging` | Find the cause before fixing: reproduce, read the evidence, narrow, name the cause, fix it with a test |
+| `bud:verify` | Run the check and show its output before saying work is done |
 | `bud:learn` | Learning how or why something works: the explanation first, tutoring only on request, study aids, and a note saved to Basic Memory's `learning/` every time. Replaces Anthropic's `learn` skill, so turn that one off on claude.ai |
 | `bud:bootstrap-project` | `/bud:bootstrap-project`: write a repo's `CLAUDE.md` with you |
 | `bud:release` | Cutting a release (`/bud:release`): code review and security review of everything since the last tag, the docs checked against the code and fixed, then the repo's own release steps. Claude Code only, since it runs Claude Code's `code-review` and `security-review` |
@@ -24,14 +26,6 @@ it by hand), the `bud-ide:chat` agent that bud's chat (the dashboard's `c`,
 things up but not edit or run commands), and a `SessionStart` hook that gives
 sessions bud starts (`BUD_BIN` set) the notes on working inside bud. Don't add it on
 claude.ai.
-
-The marketplace also lists `superpowers`, Jesse Vincent's
-[Superpowers](https://github.com/obra/superpowers) (`brainstorming`,
-`writing-plans` and the rest), fetched from its own repo and pinned to a
-release (`ref` plus the commit as `sha`), so every machine runs the same
-version. To move to a newer one, change both in `marketplace.json`; the
-commit is the tag's peeled one (`git ls-remote <repo> 'refs/tags/vX.Y.Z^{}'`).
-Add it on claude.ai the same way as `bud`.
 
 Skills load when a task matches them. [`core.md`](core.md) is the short,
 always-on part that names them, so they load reliably.

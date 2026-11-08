@@ -9,7 +9,7 @@ Jason drives the design. You do the legwork, lay out the choices, and keep the w
 
 Every part of the plan has one home:
 
-- **What and why:** the spec or design doc. In a repo it's a file next to the code (`BASE.md`, `docs/`, or wherever Superpowers saves its specs). In chat it's the reply, or a Claude Doc when he asks for a doc.
+- **What and why:** the spec or design doc. In a repo it's a file next to the code (`BASE.md` or `docs/`). In chat it's the reply, or a Claude Doc when he asks for a doc.
 - **Status:** Linear. Plan and tracker point at each other and never disagree.
 
 ## 1. Work out what he wants
@@ -18,7 +18,6 @@ Every part of the plan has one home:
 - Ask only what changes the plan, and stop once you can write it down.
 - For each real choice give two or three options, the trade-off of each in a line, and your recommendation. He picks; you don't decide for him.
 - What he calls non-negotiable goes in the doc as a hard constraint.
-- If the Superpowers plugin is installed, use its `brainstorming` and then `writing-plans`. Their formats win, and this skill covers what comes after.
 
 ## 2. Write it down
 
