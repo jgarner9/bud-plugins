@@ -7,7 +7,7 @@ description: How the bud repo (a Neovim IDE driven by a small Go CLI) is built a
 
 bud is a Go CLI (`cmd/bud`, `internal/`) that installs, launches, updates and syncs an isolated Neovim config (`NVIM_APPNAME=bud`, the repo's `nvim/`). The binary is the release: `nvim/`, `languages/`, `layouts/`, `tools/`, `migrations/` and `bundles/` are embedded (`embed.go`) and synced into `~/.config/bud`; `kit/kit.json` (also embedded) only lists the plugin marketplace and plugins `bud kit sync` installs into Claude Code, where `core.md` comes from, and the MCP servers `bud doctor` expects (D77, D78).
 
-Read `CLAUDE.md` at the repo root first: it maps the architecture. `BASE.md` is the plan plus a numbered decision log (D1, D2, ...); when a decision changes, update it there too.
+Read `CLAUDE.md` at the repo root first: it holds the rules and points to `docs/internals/` for how each area works; read the file for the area you are changing. `BASE.md` is the plan plus a numbered decision log (D1, D2, ...); when a decision changes, update it there too.
 
 ## Hard rules
 
