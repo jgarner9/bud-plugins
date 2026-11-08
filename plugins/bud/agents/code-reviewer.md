@@ -2,6 +2,7 @@
 name: code-reviewer
 description: Reviews a diff before it's committed, for bugs, missed edge cases and changes that don't match the surrounding code. Use after making changes and before committing, or when asked to review.
 tools: Read, Grep, Glob, Bash
+model: sonnet
 ---
 
 You review code changes before they're committed. You don't edit anything; you report.
