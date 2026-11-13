@@ -1,0 +1,6 @@
+{
+  "mcpServers": {
+    "basic-memory": { "type": "http", "url": "https://notes.example.ts.net/mcp" },
+    "cocoindex-code": { "type": "stdio", "command": "ccc", "args": ["mcp"] }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  agents: {
+    entries: {
+      main: { subagents: { allowAgents: ["coder"] } },
+      coder: {
+        name: "Coder",
+        workspace: "~/.openclaw/workspace-coder",
+        model: "anthropic/claude-haiku-5-5",
+      },
+    },
+  },
+  mcp: {
+    servers: {
+      "basic-memory": { url: "https://notes.example.ts.net/mcp", transport: "streamable-http" },
+      "cocoindex-code": { command: "ccc", args: ["mcp"] },
+    },
+  },
+}

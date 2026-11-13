@@ -1,0 +1,23 @@
+{
+  "_comment": "What each agent tier runs on, per harness. bud kit sync writes these into each harness's agent files. Leave a harness out to use its own default model. The OpenAI ids are placeholders: set the ones your ChatGPT plan offers (openclaw models / codex shows them).",
+  "tiers": {
+    "fast": {
+      "claude": "haiku",
+      "opencode": "anthropic/claude-haiku-5-5",
+      "codex": "<a fast OpenAI model>",
+      "openclaw": "anthropic/claude-haiku-5-5"
+    },
+    "balanced": {
+      "claude": "sonnet",
+      "opencode": "anthropic/claude-sonnet-5-5",
+      "codex": "<your everyday OpenAI model>",
+      "openclaw": "anthropic/claude-sonnet-5-5"
+    },
+    "deep": {
+      "claude": "opus",
+      "opencode": "anthropic/claude-opus-5-5",
+      "codex": "<your strongest OpenAI model>",
+      "openclaw": "anthropic/claude-opus-5-5"
+    }
+  }
+}
