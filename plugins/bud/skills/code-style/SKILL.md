@@ -22,37 +22,6 @@ The repo wins: its `CLAUDE.md`, formatter and linter config, and the code around
 - Say what to do next and what was kept: `can't find the default branch: set origin/HEAD with git remote set-head origin -a`, `nothing pushed (worktree kept at ...)`.
 - A command that isn't built yet fails saying so. Never a silent exit 0.
 
-## Anything that changes state
-
-- Only touch what the tool created. Track managed files in a manifest: update the ones that are unchanged, delete the ones a release dropped, and leave everything else alone. When a managed file was edited by hand, skip it and say so.
-- Write files that get rewritten atomically (temp file, then rename).
-- Before a destructive step, list exactly what will happen and confirm on the terminal. Without a terminal, refuse and name the `--yes` flag. Add `--dry-run` where it's cheap.
-- git: fast-forward only. Never force-push, never rewrite shared history, never merge on Jason's behalf. On divergence, stop and report.
-- Never install or upgrade system packages silently. Report what's missing and the exact command to fix it.
-- Secrets come from the environment or the OS keychain, never from the repo, logs or command-line arguments.
-- Network work never blocks startup: run checks in the background and apply the result next time.
-
-## Terminal output
-
-- Color only when writing to a terminal, `TERM` isn't `dumb` and `NO_COLOR` is unset, so pipes and tests stay plain. Pad text before coloring it.
-- Plain Unicode symbols, never emoji.
-- Prompts read from the terminal (`/dev/tty` when stdin is a pipe, as under `curl | sh`). With `--yes` or no terminal, take the defaults.
-
-## Tests
-
-- Tests run with no network and no credentials: fake the external CLIs on `PATH` (a fake `claude`, `gh`, `git` remote), use real git in temp dirs, and point `HOME` and the XDG dirs at throwaway directories.
-- Golden files for output, with an `-update` flag; review the diff before committing it.
-- Name tests for the behavior, as a sentence: `TestChangesOutsideTheAllowedPathsAreNotPushed`.
-- Go: swap package-level vars and restore them with `t.Cleanup`; helpers call `t.Helper()`; failure messages show what was expected and the context.
-- A failing test blocks the install or release, never just warns.
-- Bug fixes come with the test that would have caught them.
-
-## Docs and comments
-
-- Each tool has a `SPEC.md`: usage with a flag table, the behavior as numbered steps with each outcome, the output format, and how it's tested. Change the spec and the code together.
-- A file or package header says what it does and what it never does. Other comments say why, not what.
-- Commands in a README or `CLAUDE.md` are exact and copy-pasteable. When a check can keep docs honest (every config key documented), add it.
-
 ## Per language
 
 - **Go:** gofmt and `go vet` clean. `main` is `os.Exit(cli(os.Args[1:], os.Stdout, os.Stderr))`, so the whole CLI runs in tests with buffers.
@@ -65,13 +34,9 @@ The repo wins: its `CLAUDE.md`, formatter and linter config, and the code around
 - Lowercase conventional commits with the issue id when there is one: `fix: skip dot entries in dev link (JGA-167)`. Types: `feat`, `fix`, `chore`, `docs`, `test`, `refactor`.
 - One commit per task, made once the project's checks pass (the repo's `just check` or CI command).
 
-## Reviewing
+## Load when the task needs it
 
-Report, don't edit. Ranked worst first:
-
-1. Bugs: wrong logic, off-by-one, nil or empty cases, error paths that are swallowed or leave things half done, races.
-2. What the change misses: callers, docs or tests that needed updating.
-3. Security: secrets in code or logs, unchecked input reaching a shell, a path or a query.
-4. Fit: does it read like the code around it, and is anything more complicated than it needs to be?
-
-For each finding give the file and line, what's wrong, a concrete case where it breaks, and the fix. Skip what a formatter would catch. If nothing is worth fixing, say so in one line.
+- [state.md](state.md): anything that writes files, runs git, installs, reads secrets, uses the network or prints to a terminal.
+- [tests.md](tests.md): writing or changing tests.
+- [docs.md](docs.md): a `SPEC.md`, a README or comments.
+- [reviewing.md](reviewing.md): reviewing a change.

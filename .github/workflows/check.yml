@@ -15,5 +15,5 @@ jobs:
           node-version: 22
       # For claude plugin validate; no login needed.
       - run: npm install -g @anthropic-ai/claude-code
-      - run: shellcheck tests/check.sh
+      - run: shellcheck tests/check.sh tests/gate.sh plugins/bud/hooks/gate.sh
       - run: tests/check.sh

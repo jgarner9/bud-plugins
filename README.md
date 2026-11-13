@@ -6,6 +6,7 @@ Cowork and Claude Code all pick it up.
 
 | Skill | Use |
 | --- | --- |
+| `bud:build` | Building mode: one task per context, a spec before code, the cheapest coder that can follow it, checks instead of reading |
 | `bud:code-style` | Writing, testing, reviewing and committing code |
 | `bud:planning` | Specs, design docs with a decision log, tasks, Linear issues |
 | `bud:tools` | Which tool to use: code navigation, the lookup ladder, Basic Memory, Linear |
@@ -15,8 +16,15 @@ Cowork and Claude Code all pick it up.
 | `bud:bootstrap-project` | `/bud:bootstrap-project`: write a repo's `CLAUDE.md` with you |
 | `bud:release` | Cutting a release (`/bud:release`): code review and security review of everything since the last tag, the docs checked against the code and fixed, then the repo's own release steps. Claude Code only, since it runs Claude Code's `code-review` and `security-review` |
 
-Plus a `code-reviewer` agent (Claude Code and Cowork; chat ignores agents) and
-`/bud:plan-to-linear`.
+Plus a `code-reviewer` agent and a `coder` agent that turns a finished spec
+into code (Claude Code and Cowork; chat ignores agents), `/bud:plan-to-linear`,
+and the session gate: a hook that, after a commit, refuses a prompt naming a
+different issue until the context is cleared or compacted (`BUD_GATE=off`
+turns it off; it needs `jq`).
+
+`core.md` names three modes, learning, planning and building, and the one
+skill each starts from. Those are kept short and point at the rest, so a
+session loads only what its task needs.
 
 A second plugin, `bud-ide`, is only for Claude Code inside the
 [bud](https://github.com/jgarner9/bud) Neovim IDE, which installs it: the

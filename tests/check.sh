@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Checks the marketplace before a push: JSON parses, every skill, agent,
 # command and output style has the frontmatter Claude needs, hooks files have
-# the right shape, links inside skills resolve, core.md fits
+# the right shape, the session gate's tests pass, links inside skills resolve, core.md fits
 # Desktop's 3,000-character limit, and (when claude is installed) Claude
 # Code's own validator passes.
 set -uo pipefail
@@ -64,6 +64,8 @@ $out"
 else
 	echo "· claude isn't installed; skipped claude plugin validate"
 fi
+
+bash "$root/tests/gate.sh" || status=1
 
 [ "$status" = 0 ] && echo "✓ checks passed (core.md: $chars characters)"
 exit "$status"
