@@ -12,7 +12,7 @@ Cowork and Claude Code all pick it up.
 | `bud:tools` | Which tool to use: code navigation, the lookup ladder, Basic Memory, Linear |
 | `bud:debugging` | Find the cause before fixing: reproduce, read the evidence, narrow, name the cause, fix it with a test |
 | `bud:verify` | Run the check and show its output before saying work is done |
-| `bud:learn` | Learning how or why something works: the explanation first, tutoring only on request, study aids, and a note saved to Basic Memory's `learning/` every time. Replaces Anthropic's `learn` skill, so turn that one off on claude.ai |
+| `bud:learn` | Learning mode: Socratic tutoring with a skill map, strict levels and spaced review, after Jane Street's `socratic-tutor` (MIT); a one-off question still gets a direct answer. Saves a note to Basic Memory's `learning/` every time. Replaces Anthropic's `learn` skill, so turn that one off on claude.ai |
 | `bud:bootstrap-project` | `/bud:bootstrap-project`: write a repo's `CLAUDE.md` with you |
 | `bud:release` | Cutting a release (`/bud:release`): code review and security review of everything since the last tag, the docs checked against the code and fixed, then the repo's own release steps. Claude Code only, since it runs Claude Code's `code-review` and `security-review` |
 
